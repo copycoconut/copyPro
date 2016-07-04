@@ -6,6 +6,7 @@ var sass = require('node-sass-middleware');
 var validator = require('express-validator');
 var session = require('express-session');
 var config = require('./config');
+var passport = require('passport');
 //var bson = require('bson');
 
 module.exports = function() {
@@ -23,6 +24,9 @@ module.exports = function() {
 	 	resave: false,
 	 	saveUninitialized: true
 	 }));
+
+	 app.use(passport.initialize());
+	 app.use(passport.session());
 
 	 app.use(bodyParser.urlencoded({
 	 	extended: true

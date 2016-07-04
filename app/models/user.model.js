@@ -1,12 +1,49 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-	Username: {type: String, unique: true, index: true },
-	Fristname: String,
-	Lastname: String,
-	Email: {type: String, unique: true },
-	Password: String
+	fristname: String,
+	lastname: String,
+	username: {
+		type: String, 
+		unique: true, 
+		index: true ,
+		trim: true,
+		reqired: 'ต้องมียูสเซอร์เนม'
+	},
+	email: {
+		type: String, 
+		unique: true 
+	},
+	password: String,
+	salt:{
+		type: String
+	},
+	provider:{
+		type: String,
+		required:'Provider is required'
+	},
+	providerId: String,
+	providerData: {}
 });
+
+UserSchema.pre('save',function(next){
+	if(this.password){
+		this.salt = new Buffer(crypto.rendomBytes(16).toString('base64'),'base64');
+		this.password = this.heshPassword(this.password);
+	}
+	next();
+});
+
+UserSchema.methods.hashPassword = function (password) {
+	 /* body... */ 
+	 return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+};
+
+UserSchema.methods.authenticate = function (password) {
+	 /* body... */ 
+	 return this.password === this.hashPassword(password);
+};
 
 mongoose.model('User', UserSchema);
