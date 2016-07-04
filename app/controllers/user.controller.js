@@ -58,4 +58,9 @@ exports.logout = function(req, res) {
 	 	title: 'กรุณาล๊อกอิน',
 	 	isLoggedIn: false
 	 });
-}
+};
+exports.renderSignup = function(req, res) {
+	res.render('signup', {
+		title: 'ลงทะเบียน'
+	});
+};
