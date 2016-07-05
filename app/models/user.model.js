@@ -10,7 +10,7 @@ var UserSchema = new Schema({
 		unique: true, 
 		index: true ,
 		trim: true,
-		reqired: 'ต้องมียูสเซอร์เนม'
+		reqired: 'username is required'
 	},
 	email: {
 		type: String, 
@@ -30,8 +30,8 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save',function(next){
 	if(this.password){
-		this.salt = new Buffer(crypto.rendomBytes(16).toString('base64'),'base64');
-		this.password = this.heshPassword(this.password);
+		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'),'base64');
+		this.password = this.hashPassword(this.password);
 	}
 	next();
 });

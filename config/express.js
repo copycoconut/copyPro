@@ -6,6 +6,7 @@ var sass = require('node-sass-middleware');
 var validator = require('express-validator');
 var session = require('express-session');
 var config = require('./config');
+var flash = require('connect-flash');
 var passport = require('passport');
 //var bson = require('bson');
 
@@ -25,6 +26,7 @@ module.exports = function() {
 	 	saveUninitialized: true
 	 }));
 
+	 app.use(flash());
 	 app.use(passport.initialize());
 	 app.use(passport.session());
 

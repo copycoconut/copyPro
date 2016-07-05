@@ -4,21 +4,24 @@ html
 		title= title
 		link(href='css/main.css', rel='stylesheet')
 	body
+		each msg in message
+			div.flash
+				=msg
 		form(name='signup', method='POST', action='/signup')
 			div
 				label(for='username') ชื่อการใช้งานระบบ
-				input(namw='username', type='text', placeholder='username')
+				input(name='username', type='text', placeholder='username')
 			div
-				label(for='firstname') ชื่อ
-				input(namw='firstname', type='text', placeholder='firstname')
+				label(for='fristname') ชื่อ
+				input(name='fristname', type='text', placeholder='fristname')
 			div
 				label(for='lastname') นามสกุล
-				input(namw='lastname', type='text', placeholder='lastname')
+				input(name='lastname', type='text', placeholder='lastname')
 			div
 				label(for='email') email
-				input(namw='email', type='email', placeholder='xyz@email.com')
+				input(name='email', type='email', placeholder='xyz@email.com')
 			div
 				label(for='password') password
-				input(namw='password', type='password', placeholder='password')
+				input(name='password', type='password', placeholder='password')
 			div
 				input(type='submit', value='Sign UP')
