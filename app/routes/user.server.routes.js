@@ -1,5 +1,5 @@
 module.exports = function(app) {
-	var user = require('../controllers/user.controller');
+	var user = require('../controllers/user.server.controller');
 	app.route('/signup')
 		.get(user.renderSignup)
 		.post(user.signup);

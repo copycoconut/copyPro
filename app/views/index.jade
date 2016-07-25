@@ -14,3 +14,7 @@ html
 				a(href='/signup') Sign UP
 			div
 				a(href='/login') Log In
+		div#mainApp(ng-include="'/modules/hello/views/hello.client.view.jade'")
+		script(type='text/javascript', src='/lib/angular/angular.min.js')
+		script(type='text/javascript', src='/modules/hello/hello.client.module.js')
+		script(type='text/javascript', src='/application.js')
