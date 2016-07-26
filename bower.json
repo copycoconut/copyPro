@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "angular": "^1.5.7",
-    "fabric.js": "fabric#^1.6.3"
+    "fabric.js": "fabric#^1.6.3",
+    "angular-ui-router": "^0.2.15"
   }
 }
